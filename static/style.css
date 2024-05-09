@@ -163,12 +163,32 @@ time {
 	flex-direction: column;
 }
 
+
+
+.post-item{
+  display: flex;
+  text-align: left;
+  width: 100%;
+}
+
 .profile img{
-  height: 100px;
-  width: 100px;
+  height: 2rem;
+  width: 2rem;
   margin-right: 10px;
   border-radius: 50%;
   margin: 20px;
+}
+
+ul .posts img{
+  height: 2rem;
+  width: 2rem;
+
+}
+
+.container_posts .posts_img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
 }
 .profile h2{
 	margin-top: -10px;

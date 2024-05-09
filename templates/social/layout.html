@@ -12,30 +12,39 @@
 
 	<header class="main-head">
 		<nav class="main">
-			<h1 id="logo">Hola</h1>
+			<h1 id="logo">Anime crossverse</h1>
 			<ul>
-				<li><a href="#">Logout</a></li>
-				<li><a href="#">Register</a></li>
-				<li><a href="#">Login</a></li>
+				{% if request.user.is_authenticated %}
+				<li><a href="{% url 'feed' %}">Feed</a></li>
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+				{% else %}
+				<li><a href="{% url 'login' %}">Login</a></li>
+				<li><a href="{% url 'signup' %}">Signin</a></li>
+				{% endif %}
 			</ul>
 		</nav>
 	</header>
 
-	<!-------------------------------------
-					Messages 
-	-------------------------------------->
+	{% if messages %}
 
+		{% for message in messages %}
+		<div class="notification {{ message.tags }}">
+			{{ message }}
+		</div>
+		{% endfor %}
+
+	{% endif %}
 	<!-------------------------------------
 					Navigation Bar 
 	-------------------------------------->
 	<div class="main">
-		
+		{% if request.user.is_authenticated %}
 		<nav class="second-nav">
-			<a class="feed" href="#">Inicio</a>
-			<a class="profile" href="#">Mi Perfil</a>
-			<a class="new" href="#">Crear nuevo post</a>
+			<a class="feed" href="{% url 'feed' %}">Inicio</a>
+			<a class="profile" href="{% url 'profile' request.user.username %}">Mi Perfil</a>
+			<a class="new" href="{% url 'post' %}">Crear nuevo post</a>
 		</nav>
-
+		{% endif %}
 
 		{% block content %}
 
