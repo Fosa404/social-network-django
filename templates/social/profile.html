@@ -6,8 +6,21 @@
 <div class="profile">
 	<img src="{{ user.profile.image.url }}">
 	<h2>{{ user.username }}</h2>
-	<button><a class="follow-button" href="#">Follow</a></button>
-	
+
+	{% if request.user != user %}
+		{% if user not in request.user.profile.following %}
+
+			<button><a class="follow-button" href="{% url 'start_follow' user.username %}">Follow</a></button>
+
+		{% else %}
+
+			<button><a class="follow-button" href="{% url 'stop_follow' user.username %}">Unfollow</a></button>
+
+		{% endif %}
+	{% endif %}
+
+
+
 	{{ block.super }}
 
 </div>
@@ -20,12 +33,12 @@
 	</div>
 	<div>
 		<h5>Followers</h5>
-		<p>0</p>
+		<p>{{ user.followed_users.count }}</p>
 
 	</div>
 	<div>
 		<h5>Following</h5>
-		<p>0</p>
+		<p>{{ user.follower_users.count }}</p>
 	</div>
 </div>
 
