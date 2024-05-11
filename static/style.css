@@ -1,12 +1,17 @@
 body{
 	background: #2F4F4F;
-	font-size: 62.5%;
+	/* font-size: 62.5%; */
 	font-family: 'Varela Round', Helvetica, Arial, serif;
 }
 /* Global Styles*/
 h1{
 
 }
+
+a{
+  text-decoration: none;
+}
+
 
 h2{
 }
@@ -32,9 +37,9 @@ button{
 
 }
 
-img{
+/* img{
 	object-fit: cover;
-}
+} */
 
 /* Nav bar */
 .main-head{
@@ -165,34 +170,27 @@ time {
 
 
 
-.post-item{
+.container .post-item{
   display: flex;
   text-align: left;
   width: 100%;
 }
 
-.profile img{
-  height: 2rem;
-  width: 2rem;
-  margin-right: 10px;
-  border-radius: 50%;
-  margin: 20px;
-}
-
-ul .posts img{
-  height: 2rem;
-  width: 2rem;
-
-}
-
-.container_posts .posts_img {
-  height: 2rem;
-  width: 2rem;
+div.card .card-header img.post-img{
+  height: 2rem !important; 
+  width: 2rem !important;
   border-radius: 50%;
 }
+
+
 .profile h2{
 	margin-top: -10px;
 	font-size: 1.3rem;
+}
+
+.card-header .post-img{
+  max-height: 2rem;
+  max-width: 2rem;
 }
 
 /* Followers / Following / Post */
