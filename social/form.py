@@ -5,7 +5,8 @@ from . models import Post, User
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(label='email')
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label='password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='confirm password', widget=forms.PasswordInput)
 

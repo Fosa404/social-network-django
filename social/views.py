@@ -56,7 +56,8 @@ def create_posts(request):
         post.user = user
         post.save()
         return redirect('feed')
-    return render(request, 'social/post.html', {'form': PostForm()})
+    if request.method == 'GET':
+        return render(request, 'social/post.html', {'form': PostForm()})
 
 
 def signup(request):
