@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from django.urls import reverse
+from django.urls import reverse, resolve
 from social.models import Profile, Post, Follow
 import json
 
@@ -14,6 +14,14 @@ class TestViews(TestCase):
 
     def test_profile_view_GET(self):
         client = Client()
+        response = client.get(reverse('profile', args=['username']))
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(
+            response, '/login/?next=/profile/username/')
+
+    def test_post_view_GET(self):
+        client = Client()
         response = client.get(reverse('post'))
         self.assertEquals(response.status_code, 302)
-        self.assertTemplateUsed(response, 'social/post.html')
+        self.assertRedirects(
+            response, '/login/?next=/post/')
