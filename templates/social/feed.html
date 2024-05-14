@@ -2,6 +2,11 @@
 {% load humanize %}
 
 {% block content %}
+<form method="post" class="d-flex w-50">
+    {% csrf_token %}
+    <input type="text" placeholder="Find your friends" name="search_users" id="users" class="mr-2">
+    <input class="btn btn-primary col-2 ms-4" type="submit" value="Search" id="users">
+</form>
 
 {% for post in posts %}
 <article>

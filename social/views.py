@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import Http404
 from .form import PostForm, SignupForm
 
 
@@ -11,15 +12,30 @@ from .models import Post, Follow
 
 @login_required(login_url='login')
 def feed(request):
-    posts = Post.objects.all()
-    context = {
-        "posts": posts
-    }
-    return render(
-        request,
-        "social/feed.html",
-        context
-    )
+    current_user = request.user
+    if request.method == 'GET':
+        following_users_ids = Follow.objects.filter(
+            follower_user=current_user).values_list('followed_user_id', flat=True)
+
+        posts = Post.objects.filter(id__in=following_users_ids)
+
+        context = {
+            "posts": posts
+        }
+        return render(
+            request,
+            "social/feed.html",
+            context
+        )
+    if request.method == 'POST':
+        search_user = User.objects.filter(
+            username__contains=request.POST.get('search_users'))
+        try:
+            user = get_object_or_404(search_user)
+            return redirect('profile', user.username)
+        except Http404:
+            messages.error(request, 'No user found with that username')
+        return redirect('feed')
 
 
 @login_required(login_url='login')
