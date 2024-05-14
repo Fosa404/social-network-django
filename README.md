@@ -1,2 +1,3 @@
-# templates-redsocial
-Templates para el projecto de red social en django
+## Social network made with django
+
+(still in process development)
