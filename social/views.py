@@ -16,9 +16,10 @@ def feed(request):
     if request.method == 'GET':
         following_users_ids = Follow.objects.filter(
             follower_user=current_user).values_list('followed_user_id', flat=True)
+        posts = Post.objects.filter(user_id=current_user.id)
 
-        posts = Post.objects.filter(id__in=following_users_ids)
-
+        posts |= Post.objects.filter(id__in=following_users_ids)
+        print(following_users_ids)
         context = {
             "posts": posts
         }
