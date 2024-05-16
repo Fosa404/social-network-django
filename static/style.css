@@ -31,23 +31,24 @@ button{
 	color: white;
 	padding: 0.4rem 1.4rem;
 	border: none;
-	background: #7A9D96;
+	background: #1e2ede;
 	 border-radius: 4px;
 	cursor: pointer;
 
 }
 
-/* img{
+img{
 	object-fit: cover;
-} */
+}
 
 /* Nav bar */
-.main-head{
-	background: white;
-	color: black;
+header .main-head{
+	background: #2C3238;
+	color: red;
 }
 
 nav.main{
+  background: #2C3238;
 	min-height: 7vh;
 	display: flex;
 	width: 65%;
@@ -57,12 +58,15 @@ nav.main{
 }
 
 nav.main ul{
+  background: #2C3238 !important;
 	display: flex;
 	flex: 1 1 40rem;
 	justify-content: space-around;
 	align-items: center;
 	list-style: none;
 }
+
+
 
 #logo{
 	flex: 2 1 40rem;
@@ -78,7 +82,7 @@ a{
 
 
 .main{
-	background: white;
+	background: #2C3238;
 	width: 60%;
 	margin: 5% auto;
 	border-radius: 4px;
