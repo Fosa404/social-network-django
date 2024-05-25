@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import Http404
-from .form import PostForm, SignupForm
+from .form import PostForm, SignupForm, ProfileForm
+from .models import Profile
 
 
 from .models import Post, Follow
@@ -17,9 +18,7 @@ def feed(request):
         following_users_ids = Follow.objects.filter(
             follower_user=current_user).values_list('followed_user_id', flat=True)
         posts = Post.objects.filter(user_id=current_user.id)
-
-        posts |= Post.objects.filter(id__in=following_users_ids)
-        print(following_users_ids)
+        posts |= Post.objects.filter(user_id__in=following_users_ids)
         context = {
             "posts": posts
         }
@@ -65,6 +64,27 @@ def profile(request, username):
 
 
 @login_required(login_url='login')
+def update_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        instance = get_object_or_404(Profile, user_id=user.id)
+        form = ProfileForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', user.username)
+        messages.error(request, 'upload a correct image type')
+    if request.method == 'GET':
+        form = ProfileForm()
+        context = {
+            'user': user,
+            'form': form
+        }
+        return render(request,
+                      'form/update_profile.html',
+                      context)
+
+
+@ login_required(login_url='login')
 def create_posts(request):
     user = request.user
     if request.method == 'POST':
@@ -93,13 +113,13 @@ def signup(request):
     return render(request, 'form/signup.html', context)
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def log_out(request):
     logout(request)
     return redirect('login')
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def start_follow(request, username):
     follower_user = request.user
     followed_user = User.objects.get(username=username)
@@ -109,7 +129,7 @@ def start_follow(request, username):
     return redirect('profile', username)
 
 
-@login_required(login_url='login')
+@ login_required(login_url='login')
 def stop_follow(request, username):
     follower_user = request.user
     followed_user = User.objects.get(username=username)

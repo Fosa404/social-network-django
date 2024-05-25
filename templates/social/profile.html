@@ -4,8 +4,16 @@
 
 <!-- Profile -->
 <div class="profile">
-	<img class="profile-img" src="{{ user.profile.image.url }}">
+	<img class="profile-img col-3" src="{{ user.profile.image.url }}">
 	<h2 class="mt-3">{{ user.username }}</h2>
+	
+	{% if request.user == user %}
+	
+		<div class="update">
+			<a href="{% url 'update_profile' %}">Edit Profile</a>
+		</div>
+	
+	{% endif %}
 
 	{% if request.user != user %}
 	

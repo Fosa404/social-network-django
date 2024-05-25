@@ -81,7 +81,9 @@ a{
 	text-decoration: none;
 	color: #D3D8DC;
 }
-
+a:hover{
+  color: #533d52
+}
 
 .main{
 	background: #2C3238;
@@ -89,6 +91,10 @@ a{
 	margin: 5% auto;
 	border-radius: 4px;
 	padding-bottom: 20px;
+}
+
+.main ul li:hover{
+  color:#533d52
 }
 
 /* NAVIGATION BAR */
@@ -144,6 +150,10 @@ article{
 	font-size: 1.1rem;
 }
 
+.username a:hover{
+  color:#533d52
+}
+
 .container-article{
   display: flex;
 }
@@ -153,6 +163,10 @@ article{
   width: 68px;
   margin-right: 10px;
   border-radius: 50%;
+}
+
+.container-article.username a:hover{
+  color: #533d52 !important
 }
 
 article:last-child {
@@ -176,6 +190,8 @@ time {
 }
 .profile img.profile-img{
   border-radius: 50%;
+  max-width: 8%;
+ 
 }
 .profile h2 {
   color: #D3D8DC;
@@ -238,6 +254,15 @@ form {
     margin: 0;
     padding: 40px;
     font-size: 1rem;
+    color:#D3D8DC
+}
+
+.signin label{
+  color: #D3D8DC;
+}
+
+form button#submit{
+  background-color: blueviolet;
 }
 input {
   width: 100%;
