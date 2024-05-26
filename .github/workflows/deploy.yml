@@ -39,6 +39,6 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway --services
+          railway -- services
           railway run --service web python manage.py migrate
           railway run --service web python manage.py collectstatic
