@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -103,7 +103,10 @@ def signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
             messages.success(request, f'{username} created')
+            user = authenticate(request, username=username, password=password)
+            login(request, user=user)
             return redirect('feed')
         messages.error(request, "Please complete the fields correctly")
     form = SignupForm()

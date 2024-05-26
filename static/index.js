@@ -1,16 +1,12 @@
-const message = document.getElementByClassName('notification')
-const main = document.getElementByClassName('main')
+// const message = document.getElementByClassName('notification')
+const message = document.querySelector('.notification')
 
-function hide() {
-    message.setAttribute('visivility', 'hidden')
-}
-
-console.log(main);
-
-
-message.addEventListener('click',
-    console.log(message),
-    setTimeout(() => {
-        hide();
+window.addEventListener('load',()=>{
+    setTimeout(()=>{
+        message.style.display= 'none';
     }, 4000)
-)
+})
+
+
+
+
