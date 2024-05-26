@@ -27,6 +27,7 @@ SECRET_KEY = "django-insecure-f96)fhe^553&9*5s$44etf^aj7yzi!6o0+a$e@ybap!_gyh%c^
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['social-network-django-production.up.railway.app']
 
 
 # Application definition
