@@ -13,6 +13,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Railway
+        run: npm i -g @railway/cli
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -31,5 +39,6 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
+          railway up
           railway run python manage.py migrate
           railway run python manage.py collectstatic
