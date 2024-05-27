@@ -49,4 +49,4 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway up -- service ${{ secrets.SERVICE }}
+          railway up --service ${{ secrets.SERVICE }}
