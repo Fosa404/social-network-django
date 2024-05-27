@@ -41,4 +41,4 @@ jobs:
         run: |
           railway run --service ${{ secrets.SERVICE }} python manage.py migrate
           railway run --service ${{ secrets.SERVICE }} python manage.py collectstatic
-          railway up
+          railway up --service ${{ secrets.SERVICE }}
