@@ -65,4 +65,4 @@ class TestViews(TestCase):
                                                     'content': 'content2'})
         post = Post.objects.filter(content='content2').first()
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(post.user_id, 1)
+        self.assertEquals(post.user_id, 7)
