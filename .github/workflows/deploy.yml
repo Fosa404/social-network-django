@@ -31,10 +31,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests
-        run: |
-          python manage.py test  social
-
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
@@ -42,4 +38,15 @@ jobs:
           railway run --service ${{ secrets.SERVICE }} python manage.py collectstatic
           railway run --service ${{ secrets.SERVICE }} python manage.py makemigrations
           railway run --service ${{ secrets.SERVICE }} python manage.py migrate
-          railway up --service ${{ secrets.SERVICE }}
+
+      - name: Run Tests
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          railway run --service ${{ secrets.SERVICE }} python manage.py test social
+
+      - name: Deploy
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          railway up
