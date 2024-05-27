@@ -1,1 +1,1 @@
-web: gunicorn social_network.wsgi
+web: python manage.py collectstatic gunicorn social_network.wsgi
