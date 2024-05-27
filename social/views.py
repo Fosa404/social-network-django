@@ -11,14 +11,29 @@ from .models import Profile
 from .models import Post, Follow
 
 
-@login_required(login_url='login')
 def feed(request):
     current_user = request.user
     if request.method == 'GET':
-        following_users_ids = Follow.objects.filter(
-            follower_user=current_user).values_list('followed_user_id', flat=True)
-        posts = Post.objects.filter(user_id=current_user.id)
-        posts |= Post.objects.filter(user_id__in=following_users_ids)
+        if current_user.is_authenticated:
+            """
+            if user is logged shows only it's posts
+            and those of it's followings
+            """
+            following_users_ids = Follow.objects.filter(
+                follower_user=current_user).values_list('followed_user_id', flat=True)
+            print(following_users_ids)
+            posts = Post.objects.filter(user_id=current_user.id)
+            posts |= Post.objects.filter(user_id__in=following_users_ids)
+            context = {
+                "posts": posts
+            }
+            return render(
+                request,
+                "social/feed.html",
+                context
+            )
+        # if not logged show all posts
+        posts = Post.objects.all()
         context = {
             "posts": posts
         }

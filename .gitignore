@@ -1,5 +1,7 @@
 */__pycache__
 __pycache__
 db.sqlite3
-*/migrations/*
+package-lock.json
 media/profile_img
+.env
+staticfiles
