@@ -4,7 +4,12 @@
 
 <!-- Profile -->
 <div class="profile">
-	<img class="profile-img col-3" src="{{ user.profile.image.url }}">
+	{% if user.profile.image %}
+		<img class="profile-img col-3" src="{{ user.profile.image.url }}">
+	{% else %}
+		{% load static %}
+		<img class="profile-img col-3" src="{% static 'avatar.jpeg' %}">
+	{% endif %}
 	<h2 class="mt-3">{{ user.username }}</h2>
 	
 	{% if request.user == user %}

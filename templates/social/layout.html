@@ -15,8 +15,8 @@
 		<nav class="main">
 			<h1 id="logo">Social-django</h1>
 			<ul>
-				{% if request.user.is_authenticated %}
 				<li><a href="{% url 'feed' %}">Feed</a></li>
+				{% if request.user.is_authenticated %}
 				<li><a href="{% url 'logout' %}">Logout</a></li>
 				{% else %}
 				<li><a href="{% url 'login' %}">Login</a></li>

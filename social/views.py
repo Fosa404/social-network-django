@@ -44,7 +44,7 @@ def feed(request):
         )
     if request.method == 'POST':
         search_user = User.objects.filter(
-            username__contains=request.POST.get('search_users'))
+            username__icontains=request.POST.get('search_users'))
         try:
             user = get_object_or_404(search_user)
             return redirect('profile', user.username)

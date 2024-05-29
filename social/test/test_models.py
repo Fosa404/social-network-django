@@ -30,12 +30,6 @@ class TestModels(TestCase):
             followed_user=self.user2
         )
 
-    def test_profile_default_image(self):
-        """
-            test default image is asigned
-        """
-        self.assertEqual(self.user.profile.image, 'avatar.jpeg')
-
     def test_user_following_user2(self):
         """
         test follow instance works
