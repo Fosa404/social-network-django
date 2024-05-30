@@ -44,11 +44,12 @@ def feed(request):
         )
     if request.method == 'POST':
         search_user = User.objects.filter(
-            username__icontains=request.POST.get('search_users')).first()
-        if search_user:
-            return redirect('profile', search_user.username)
-
-        messages.error(request, 'No user found with that username')
+            username__icontains=request.POST.get('search_users'))
+        try:
+            user = get_object_or_404(search_user)
+            return redirect('profile', user.username)
+        except Http404:
+            messages.error(request, 'No user found with that username')
         return redirect('feed')
 
 

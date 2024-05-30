@@ -12,12 +12,7 @@
 {% for post in posts %}
 <article>
     <div class="container-article">
-        {% if user.profile.image %}
-		<img class="profile-img col-3" src="{{ user.profile.image.url }}">
-	    {% else %}
-		{% load static %}
-		<img class="profile-img col-3" src="{% static 'avatar.jpeg' %}">
-	    {% endif %}
+        <img src="{{ post.user.profile.image.url }}">
         <div>
             <h2 class="username"><a href="{% url 'profile' post.user.username %}">{{ post.user.username }}</a></h2>
             <i class="clock"></i>
