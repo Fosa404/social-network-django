@@ -29,7 +29,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
-    'http://*', 'https://social-media-django-production.up.railway.app']
+    'http://*', 'https://social-media-django.up.railway.app/']
 
 
 # Application definition
